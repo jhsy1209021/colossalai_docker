@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.0.3-devel-ubuntu20.04
+FROM nvidia/cuda:11.0.3-cudnn8-devel-ubuntu20.04
 
 ARG UID=1000
 ARG GID=1000
@@ -41,7 +41,7 @@ RUN pip3 install astunparse numpy ninja pyyaml setuptools cmake cffi typing_exte
 ##Install pytorch
 ENV TORCH_CUDA_ARCH_LIST="6.1"
 RUN pip3 install -r requirements.txt
-RUN PATH=${PATH}:/home/${NAME}/.local/bin python3 setup.py develop
+RUN PATH=${PATH}:/home/${NAME}/.local/bin USE_EXPERIMENTAL_CUDNN_V8_API=0 python3 setup.py develop
 
 WORKDIR /workspace
 #Install correspond torchvision(0.14.0)
