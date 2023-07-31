@@ -1,0 +1,1 @@
+docker build -t colossalai:main --build-arg UID=$(id -u $USER) --build-arg NAME=$USER .
